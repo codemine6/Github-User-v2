@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction().apply {
-//            add(R.id.frameContainer, HomeFragment())
             add(R.id.frameContainer, UserSearchFragment())
             commit()
         }

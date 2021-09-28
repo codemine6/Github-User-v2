@@ -21,7 +21,8 @@
         <entry key="app/src/main/res/layout/item_repository_shimmer.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/item_user_shimmer.xml" value="0.22708333333333333" />
-        <entry key="app/src/main/res/layout/user_detail_shimmer.xml" value="0.26666666666666666" />
+        <entry key="app/src/main/res/layout/user_detail_shimmer.xml" value="0.24" />
+        <entry key="app/src/main/res/menu/home_menu.xml" value="0.11614583333333334" />
       </map>
     </option>
   </component>

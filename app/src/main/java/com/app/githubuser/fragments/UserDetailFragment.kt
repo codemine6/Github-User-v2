@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.githubuser.R
 import com.app.githubuser.adapters.RepositoryAdapter
 import com.app.githubuser.adapters.UserFollowAdapter
@@ -70,6 +68,14 @@ class UserDetailFragment : Fragment() {
                 }
             }.attach()
         }
+
+        binding.btnShowFollow.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().apply {
+                replace(R.id.frameContainer, UserFollowFragment())
+                addToBackStack(null)
+                commit()
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -89,7 +95,7 @@ class UserDetailFragment : Fragment() {
             tvLogin.text = user.login
 
             tlFollow.isVisible = true
-//            smDetail.root.isVisible = false
+            smDetail.root.isVisible = false
         }
     }
 

@@ -1,10 +1,8 @@
 package com.app.githubuser.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -34,8 +32,9 @@ class UserSearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        activity?.title = getString(R.string.search)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        activity?.title = getString(R.string.app_name)
+        setHasOptionsMenu(true)
 
         userViewModel.results.observe(viewLifecycleOwner, { showSearchResult(it) })
         userViewModel.isLoading.observe(viewLifecycleOwner, { showLoading(it) })
@@ -57,6 +56,24 @@ class UserSearchFragment : Fragment() {
                 return true
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionSetting -> {
+                requireActivity().supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.frameContainer, UserSearchFragment())
+                    addToBackStack(null)
+                    commit()
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {

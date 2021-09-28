@@ -67,28 +67,56 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
             <View
+                android:id="@+id/view"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="353dp"
+                android:background="@drawable/corner_simmer_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tbFollowing" />
+
+            <View
                 android:id="@+id/tvRepositoryTitle"
                 android:layout_width="130dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="370dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/corner_simmer_background"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tbFollowing" />
+                app:layout_constraintTop_toBottomOf="@+id/view" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRepositoryTitle">
 
-                <include layout="@layout/item_repository_shimmer" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <include layout="@layout/item_repository_shimmer" />
+                    <include layout="@layout/item_repository_shimmer" />
+
+                    <include layout="@layout/item_repository_shimmer" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/item_repository_shimmer" />
+
+                    <include layout="@layout/item_repository_shimmer" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

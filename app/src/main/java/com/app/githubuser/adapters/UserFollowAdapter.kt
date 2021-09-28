@@ -3,7 +3,7 @@ package com.app.githubuser.adapters
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.app.githubuser.fragments.UserFollowFragment
+import com.app.githubuser.fragments.ViewFollowFragment
 
 class UserFollowAdapter(
     fragment: Fragment,
@@ -12,7 +12,7 @@ class UserFollowAdapter(
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
-        val fragment = UserFollowFragment()
+        val fragment = ViewFollowFragment()
         fragment.arguments = Bundle().apply {
             putInt("TYPE", position)
             putString("LOGIN", login)

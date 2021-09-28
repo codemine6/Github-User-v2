@@ -59,22 +59,35 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpFollow"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="338dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tlFollow" />
+
+        <Button
+            android:id="@+id/btnShowFollow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/view_more"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_500"
+            android:textStyle=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vpFollow" />
 
         <TextView
             android:id="@+id/tvRepositoryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/repository_title"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vpFollow" />
+            app:layout_constraintTop_toBottomOf="@+id/btnShowFollow" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRepositories"
