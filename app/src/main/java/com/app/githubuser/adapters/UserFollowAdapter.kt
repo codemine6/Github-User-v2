@@ -9,6 +9,7 @@ class UserFollowAdapter(
     fragment: Fragment,
     private val login: String
 ) : FragmentStateAdapter(fragment) {
+
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {

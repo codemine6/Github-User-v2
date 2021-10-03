@@ -7,8 +7,10 @@ import com.app.githubuser.data.Repository
 import com.app.githubuser.databinding.ItemRepositoryBinding
 
 class RepositoryAdapter(
-    private val repositories: List<Repository>
+    private val repositories: List<Repository>,
+    private val itemWidth: Int? = null
 ) : RecyclerView.Adapter<RepositoryAdapter.ViewHolder>() {
+
     class ViewHolder(val binding: ItemRepositoryBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun getItemCount(): Int = repositories.size
@@ -27,5 +29,7 @@ class RepositoryAdapter(
             tvLanguage.text = repository.language
             tvStar.text = repository.stargazersCount.toString()
         }
+
+        if (itemWidth != null) holder.itemView.layoutParams.width = 500
     }
 }

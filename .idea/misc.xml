@@ -5,23 +5,28 @@
       <map>
         <entry key="app/src/main/res/drawable/border_background.xml" value="0.240625" />
         <entry key="app/src/main/res/drawable/corner_simmer_background.xml" value="0.240625" />
+        <entry key="app/src/main/res/drawable/ic_error_outline_24.xml" value="0.240625" />
         <entry key="app/src/main/res/drawable/ic_search_24.xml" value="0.240625" />
         <entry key="app/src/main/res/drawable/ic_settings_24.xml" value="0.1388888888888889" />
         <entry key="app/src/main/res/drawable/ic_star_24.xml" value="0.240625" />
         <entry key="app/src/main/res/drawable/ic_star_border_18.xml" value="0.240625" />
+        <entry key="app/src/main/res/drawable/ic_wifi_off_24.xml" value="0.240625" />
         <entry key="app/src/main/res/drawable/searchview_background.xml" value="0.240625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/error_dialog.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_repositories.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/fragment_user_detail.xml" value="0.24" />
         <entry key="app/src/main/res/layout/fragment_user_follow.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/fragment_user_search.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_view_follow.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/item_repository.xml" value="0.44" />
         <entry key="app/src/main/res/layout/item_repository_shimmer.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/item_user_shimmer.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/user_detail_shimmer.xml" value="0.24" />
+        <entry key="app/src/main/res/layout/warning_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/menu/home_menu.xml" value="0.11614583333333334" />
       </map>
     </option>

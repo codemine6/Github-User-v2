@@ -10,32 +10,34 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+const val token = "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"
+
 interface ApiService {
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     @GET("search/users")
     fun searchUser(
         @Query("q") query: String
     ): Call<SearchResult>
 
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     @GET("users/{login}")
     fun getUser(
         @Path("login") login: String
     ): Call<UserDetail>
 
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     @GET("users/{login}/following")
     fun getUserFollowing(
         @Path("login") login: String
     ): Call<List<UserItem>>
 
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     @GET("users/{login}/followers")
     fun getUserFollowers(
         @Path("login") login: String
     ): Call<List<UserItem>>
 
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token $token")
     @GET("users/{login}/repos")
     fun getUserRepositories(
         @Path("login") login: String

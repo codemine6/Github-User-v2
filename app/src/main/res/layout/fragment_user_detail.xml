@@ -59,7 +59,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpFollow"
             android:layout_width="match_parent"
-            android:layout_height="338dp"
+            android:layout_height="350dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tlFollow" />
@@ -68,6 +68,7 @@
             android:id="@+id/btnShowFollow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="340dp"
             android:background="@android:color/transparent"
             android:text="@string/view_more"
             android:textAllCaps="false"
@@ -75,7 +76,7 @@
             android:textStyle=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vpFollow" />
+            app:layout_constraintTop_toBottomOf="@+id/tlFollow" />
 
         <TextView
             android:id="@+id/tvRepositoryTitle"
@@ -93,13 +94,27 @@
             android:id="@+id/rvRepositories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:clipToPadding="false"
-            android:scrollbars="horizontal"
+            android:padding="8dp"
             android:scrollbarSize="4dp"
+            android:scrollbars="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRepositoryTitle" />
+
+        <Button
+            android:id="@+id/btnShowRepositories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:background="@android:color/transparent"
+            android:text="@string/view_more"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvRepositoryTitle" />
 

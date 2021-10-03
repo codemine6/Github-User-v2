@@ -17,7 +17,7 @@ class ViewFollowFragment : Fragment() {
 
     private var _binding: FragmentViewFollowBinding? = null
     private val binding get() = _binding!!
-    private val userDetailViewModel: UserDetailViewModel by activityViewModels()
+    private val viewModel: UserDetailViewModel by activityViewModels()
     private var listType: Int? = 0
     private var userLogin: String? = ""
 
@@ -32,8 +32,8 @@ class ViewFollowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userDetailViewModel.following.observe(viewLifecycleOwner, { showUserFollow(it) })
-        userDetailViewModel.followers.observe(viewLifecycleOwner, { showUserFollow(it) })
+        viewModel.following.observe(viewLifecycleOwner, { showUserFollow(it) })
+        viewModel.followers.observe(viewLifecycleOwner, { showUserFollow(it) })
 
         listType = arguments?.getInt("TYPE")
         userLogin = arguments?.getString("LOGIN")
@@ -54,8 +54,8 @@ class ViewFollowFragment : Fragment() {
     private fun getUserFollow(type: Int?, login: String?) {
         if (type != null && login != null) {
             when (type) {
-                0 -> userDetailViewModel.getUserFollowing(login)
-                1 -> userDetailViewModel.getUserFollowers(login)
+                0 -> viewModel.getUserFollowers(login)
+                1 -> viewModel.getUserFollowing(login)
             }
             binding.apply {
                 rvFollow.isVisible = false

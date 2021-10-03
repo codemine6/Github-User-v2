@@ -24,8 +24,7 @@ class UserDetailFragment : Fragment() {
 
     private var _binding: FragmentUserDetailBinding? = null
     private val binding get() = _binding!!
-    private val userViewModel: UserDetailViewModel by activityViewModels()
-    private lateinit var loginUser: String
+    private val viewModel: UserDetailViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,40 +39,55 @@ class UserDetailFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity?.title = getString(R.string.profile)
 
-        userViewModel.user.observe(viewLifecycleOwner, { showUserInfo(it) })
-        userViewModel.repositories.observe(viewLifecycleOwner, { showRepositories(it)})
-        userViewModel.isLoading.observe(viewLifecycleOwner, {
+        viewModel.user.observe(viewLifecycleOwner, { showUserInfo(it) })
+        viewModel.repositories.observe(viewLifecycleOwner, { showRepositories(it)})
+        viewModel.isLoading.observe(viewLifecycleOwner, {
             binding.progressBar.isVisible = it
         })
-        userViewModel.isError.observe(viewLifecycleOwner, { error ->
+        viewModel.isError.observe(viewLifecycleOwner, { error ->
             if (error) {
-                CustomDialog().error(requireActivity()) {
-                    userViewModel.getUser(loginUser)
-                }
+                CustomDialog().error(requireActivity())
             }
         })
 
         arguments?.getString("LOGIN")?.let { login ->
-            loginUser = login
-            userViewModel.getUser(login)
-            userViewModel.getUserRepositories(login)
+            viewModel.getUser(login)
+            viewModel.getUserRepositories(login)
 
             val userFollowAdapter = UserFollowAdapter(this, login)
             binding.vpFollow.adapter = userFollowAdapter
 
             TabLayoutMediator(binding.tlFollow, binding.vpFollow) { tab, position ->
                 when (position) {
-                    0 -> tab.text = getString(R.string.following)
-                    1 -> tab.text = getString(R.string.followers)
+                    0 -> tab.text = getString(R.string.followers)
+                    1 -> tab.text = getString(R.string.following)
                 }
             }.attach()
-        }
 
-        binding.btnShowFollow.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.frameContainer, UserFollowFragment())
-                addToBackStack(null)
-                commit()
+            binding.btnShowFollow.setOnClickListener {
+                val fragment = UserFollowFragment()
+                fragment.arguments = Bundle().apply {
+                    putString("LOGIN", login)
+                }
+
+                requireActivity().supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.frameContainer, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
+            }
+
+            binding.btnShowRepositories.setOnClickListener {
+                val fragment = RepositoriesFragment()
+                fragment.arguments = Bundle().apply {
+                    putString("LOGIN", login)
+                }
+
+                requireActivity().supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.frameContainer, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
             }
         }
     }
@@ -102,8 +116,8 @@ class UserDetailFragment : Fragment() {
     private fun showRepositories(repositories: List<Repository>) {
         binding.tvRepositoryTitle.text = getString(R.string.repository_title, repositories.size)
         binding.rvRepositories.apply {
-            adapter = RepositoryAdapter(repositories)
-            layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.HORIZONTAL, false)
+            adapter = RepositoryAdapter(repositories, 500)
+            layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.HORIZONTAL, false)
         }
     }
 }

@@ -4,6 +4,7 @@
     <string name="followers">Followers</string>
     <string name="not_found">Upps, user not found</string>
     <string name="profile">Profile</string>
+    <string name="repositories">Repositories</string>
     <string name="repository_title">Repositories (%d)</string>
     <string name="result">%d users found</string>
     <string name="settings">Settings</string>

@@ -19,8 +19,7 @@ class UserSearchFragment : Fragment() {
 
     private var _binding: FragmentUserSearchBinding? = null
     private val binding get() = _binding!!
-    private val userViewModel: UserSearchViewModel by activityViewModels()
-    private var querySearch: String = ""
+    private val viewModel: UserSearchViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,13 +35,14 @@ class UserSearchFragment : Fragment() {
         activity?.title = getString(R.string.app_name)
         setHasOptionsMenu(true)
 
-        userViewModel.results.observe(viewLifecycleOwner, { showSearchResult(it) })
-        userViewModel.isLoading.observe(viewLifecycleOwner, { showLoading(it) })
-        userViewModel.isError.observe(viewLifecycleOwner, { error ->
+        viewModel.results.observe(viewLifecycleOwner, { showSearchResult(it) })
+        viewModel.isLoading.observe(viewLifecycleOwner, {
+            binding.progressBar.isVisible = it
+            binding.sflList.isVisible = it
+        })
+        viewModel.isError.observe(viewLifecycleOwner, { error ->
             if (error) {
-                CustomDialog().error(requireContext()) {
-                    userViewModel.searchUser(querySearch)
-                }
+                CustomDialog().error(requireContext())
             }
         })
 
@@ -50,8 +50,13 @@ class UserSearchFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean = false
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
-                    querySearch = newText
-                    userViewModel.searchUser(newText)
+                    viewModel.searchUser(newText)
+
+                    binding.apply {
+                        tvResult.text = ""
+                        rvUsers.isVisible = false
+                        ivEmpty.isVisible = true
+                    }
                 }
                 return true
             }
@@ -67,7 +72,7 @@ class UserSearchFragment : Fragment() {
         when (item.itemId) {
             R.id.actionSetting -> {
                 requireActivity().supportFragmentManager.beginTransaction().apply {
-                    replace(R.id.frameContainer, UserSearchFragment())
+                    replace(R.id.frameContainer, SettingsFragment())
                     addToBackStack(null)
                     commit()
                 }
@@ -87,30 +92,15 @@ class UserSearchFragment : Fragment() {
                 layoutManager = LinearLayoutManager(activity)
                 adapter = UserAdapter(requireActivity(), results.items)
             }
-            binding.rvUsers.isVisible = true
-            binding.tvResult.text = getString(R.string.result, results.totalCount)
-        } else {
             binding.apply {
-                rvUsers.isVisible = false
-                tvNotFound.isVisible = true
-                tvResult.text = ""
-            }
-        }
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.apply {
-                progressBar.isVisible = true
-                sflList.isVisible = true
-                tvResult.text = ""
-                rvUsers.isVisible = false
-                tvNotFound.isVisible = false
+                tvResult.text = getString(R.string.result, results.totalCount)
+                rvUsers.isVisible = true
             }
         } else {
             binding.apply {
-                progressBar.isVisible = false
-                sflList.isVisible = false
+                tvResult.text = ""
+                rvUsers.isVisible = false
+                ivEmpty.isVisible = true
             }
         }
     }
